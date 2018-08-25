@@ -1,12 +1,16 @@
 package com.mobilitypirates.raviteja.imagepickerandcropper;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -30,12 +34,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // remove title
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-
-
-
+        //View Declaration
         iv_image = (ImageView) findViewById(R.id.iv_image);
         btn_choose_image = (Button) findViewById(R.id.btn_choose_image);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linear_layout);
+
+        //Setting Animation
+        AnimationDrawable animationDrawable = (AnimationDrawable) linearLayout.getBackground();
+        //Setting the timmer
+        animationDrawable.setEnterFadeDuration(1500);
+        animationDrawable.setExitFadeDuration(2000);
+        animationDrawable.start();
 
         Glide.with(this).load(R.drawable.images).apply(new RequestOptions().circleCrop()).into(iv_image);
 
@@ -87,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(this)
                         .load(new File(resultUri.getPath()))
                         .apply(new RequestOptions().circleCrop())
-                        .into(iv_image );
+                        .into(iv_image);
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
