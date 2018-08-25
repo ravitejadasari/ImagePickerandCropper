@@ -36,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         // remove title
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
         //View Declaration
         iv_image = (ImageView) findViewById(R.id.iv_image);
         btn_choose_image = (Button) findViewById(R.id.btn_choose_image);
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(this)
                         .load(new File(resultUri.getPath()))
                         .apply(new RequestOptions().circleCrop())
-                        .into(iv_image);
+                        .into(iv_image );
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
