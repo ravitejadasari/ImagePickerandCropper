@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         iv_image = (ImageView) findViewById(R.id.iv_image);
         btn_choose_image = (Button) findViewById(R.id.btn_choose_image);
 
